@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Products {% endblock %}
+{% block content %}
+
+<div class="w-full max-w-7xl px-5 py-10 md:pt-16 pb-24 mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap:10">
+
+        <div>
+            <h2 class="text-2xl font-bold pb-6">Filters</h2>
+
+            <!-- Colors  -->
+
+            <div class="bg-white myshadow rounded py-8 px-5 mb-5">
+                <h2 class="text-xl font-semibold mb-5">Colors</h2>
+                <div class="flex flex-wrap space-x-5">
+                    {% for color in colors %}
+                    <div class="flex items-center mb-3">
+                        <input value="{{color.color__id}}" type="checkbox" class="mr-2">
+                        <button class="btn h-5 w-5 rounded"
+                            style="background-color:{{color.color__color_code}}"></button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Categories  -->
+
+            <div class="bg-white myshadow rounded py-8 px-5 mb-5">
+                <h2 class="text-xl font-semibold mb-5">Categories</h2>
+
+                <div class="flex flex-wrap space-x-5">
+
+                    {% for cat in categories %}
+                    <div class="flex items-center mb-3">
+                        <input value="{{cat.category__id}}" type="checkbox" class="mr-2">
+                        {{cat.category__title}}
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+
+            </div>
+
+            <!-- Brands  -->
+
+            <div class="bg-white myshadow rounded py-8 px-5 mb-5">
+                <h2 class="text-xl font-semibold mb-5">Brandds</h2>
+
+                <div class="flex flex-wrap space-x-5">
+
+                    {% for brand in brands %}
+                    <div class="flex items-center mb-3">
+                        <input value="{{brand.brand__id}}" type="checkbox" class="mr-2">
+                        {{brand.brand__title}}
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <!-- Sizes  -->
+
+            <div class="bg-white myshadow rounded py-8 px-5 mb-5">
+                <h2 class="text-xl font-semibold mb-5">Sizes</h2>
+
+                <div class="flex flex-wrap space-x-5">
+
+                    {% for size in sizes %}
+                    <div class="flex items-center mb-3">
+                        <input value="{{size.size__id}}" type="checkbox" class="mr-2">
+                        {{size.size__title}}
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-span-12 md:col-span-3">
+            <h2 class="text-2xl font-bold  pb-6">All Products</h2>
+
+            <div class="flex flex-wrap gap-6">
+
+                {% for product in products %}
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full relative product border rounded-lg">
+                    <div>
+                        <a href="/product/{{prodcut.slug}}/{{product.id}}" class="block  h-48 rounded overflow-hidden">
+                            <img alt="ecommerce" class="object-contain object-center w-full h-full block"
+                                src="{{product.image.url}}">
+                        </a>
+                    </div>
+                    <div class="product-icons space-x-2">
+                        <i class="fa fa-heart"></i>
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{product.category.title}}
+                        </h3>
+                        <a href="/product/{{prodcut.slug}}/{{product.id}}">
+                            <h2 class="text-gray-900 title-font text-lg font-medium pdtitle">{{product.title}}</h2>
+                        </a>
+                        <p class="mt-1">Tk {{product.price}}</p>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <p class="mt-10 text-center">
+                <a href="{% url 'product-list' %}"
+                    class="btn bg-indigo-500 rounded py-3 px-4 font-semibold text-white uppercase">Load More <i
+                        class="fa fa-sync"></i></a>
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

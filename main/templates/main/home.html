@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home {% endblock %}
+{% block content %}
+
+<div class="home">
+    <!-- <div class="hero-section">
+        <img id="slider-image" src="{% static 'images/ban2.jpg' %}" alt="">
+    </div> -->
+
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+            {% for banner in banners %}
+            <div class="swiper-slide">
+                <img id="slider-image" src="{{banner.img.url}}" alt="">
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+
+
+    <div class="w-full max-w-7xl px-5 py-10 md:py-20 mx-auto">
+
+        <div class="flex flex-wrap -m-4 gap-10">
+
+            {% for product in products%}
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full relative product border rounded-lg">
+                <div>
+                    <a href="/product/{{prodcut.slug}}/{{product.id}}" class="block  h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-contain object-center w-full h-full block"
+                            src="{{product.image.url}}">
+                    </a>
+                </div>
+                <div class="product-icons space-x-2">
+                    <i class="fa fa-heart"></i>
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <div class="mt-4 text-center">
+                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{product.category.title}}</h3>
+                    <a href="/product/{{prodcut.slug}}/{{product.id}}">
+                        <h2 class="text-gray-900 title-font text-lg font-medium pdtitle">{{product.title}}</h2>
+                    </a>
+                    <p class="mt-1">Tk {{product.price}}</p>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <p class="mt-10 text-center">
+            <a href="{% url 'product-list' %}"
+                class="btn bg-indigo-500 rounded py-3 px-4 font-semibold text-white uppercase">All Products <i
+                    class="fa fa-long-arrow-alt-right"></i></a>
+        </p>
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

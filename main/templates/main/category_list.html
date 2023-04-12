@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Categories {% endblock %}
+{% block content %}
+
+<div class="w-full max-w-7xl px-5 py-10 md:pt-16 pb-24 mx-auto">
+
+    <h2 class="text-2xl md:text-3xl font-medium mb-10">All Categories</h2>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+
+        {% for category in categories %}
+        <div class="relative category cursor-pointer">
+            <a href="{% url 'category-product-list' category.id %}">
+                <img src="{{category.image.url}}" class="w-full h-full m-0 object-cover" alt="">
+                <h2
+                    class="text-center text-xl font-medium text-gray-900 py-3 bg-indigo-500 text-white absolute bottom-0 w-full cat-title">
+                    {{category.title}}</h2>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
