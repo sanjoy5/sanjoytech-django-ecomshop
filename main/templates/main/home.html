@@ -33,9 +33,10 @@
             {% for product in products%}
             <div class="lg:w-1/4 md:w-1/2 p-4 w-full relative product border rounded-lg">
                 <div>
-                    <a href="/product/{{prodcut.slug}}/{{product.id}}" class="block  h-48 rounded overflow-hidden">
+                    <a href="{% url 'product-details' product.slug product.id %}"
+                        class="block  h-48 rounded overflow-hidden">
                         <img alt="ecommerce" class="object-contain object-center w-full h-full block"
-                            src="{{product.image.url}}">
+                            src="{{product.productattribute_set.first.image.url}}">
                     </a>
                 </div>
                 <div class="product-icons space-x-2">
@@ -44,10 +45,10 @@
                 </div>
                 <div class="mt-4 text-center">
                     <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{product.category.title}}</h3>
-                    <a href="/product/{{prodcut.slug}}/{{product.id}}">
+                    <a href="{% url 'product-details' product.slug product.id %}">
                         <h2 class="text-gray-900 title-font text-lg font-medium pdtitle">{{product.title}}</h2>
                     </a>
-                    <p class="mt-1">Tk {{product.price}}</p>
+                    <p class="mt-1">Tk {{product.productattribute_set.first.price}}</p>
                 </div>
 
             </div>

@@ -16,12 +16,12 @@ class ColorAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title','id','category','brand','color','size','status','is_featured')
+    list_display = ('title','id','category','brand','status','is_featured')
     list_editable = ('status','is_featured')
 
 
 class ProductAttributeAdmin(admin.ModelAdmin):
-    list_display = ('id','product','price','color','size')
+    list_display = ('image_tag','id','product','price','color','size')
     list_display_links = ('id','product')
 
 admin.site.register(Banner,BannerAdmin)
